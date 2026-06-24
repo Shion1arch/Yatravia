@@ -106,45 +106,49 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <div className={`navbar__mobile ${menuOpen ? 'navbar__mobile--open' : ''}`} id="mobile-menu">
-        {navLinks.map((link) => (
-          <Link
-            key={link.href}
-            to={link.href}
-            className="navbar__mobile-link"
-            onClick={() => setMenuOpen(false)}
-          >
-            {link.label}
-          </Link>
-        ))}
-        
-        {isAdmin ? (
-          <Link to="/admin" className="navbar__mobile-link" style={{ color: '#6BA4D4' }} onClick={() => setMenuOpen(false)}>
-            Admin Dashboard
-          </Link>
-        ) : user ? (
-          <Link to="/dashboard" className="navbar__mobile-link" style={{ color: '#6BA4D4' }} onClick={() => setMenuOpen(false)}>
-            Dashboard
-          </Link>
-        ) : null}
+        <div className="navbar__mobile-inner">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              to={link.href}
+              className="navbar__mobile-link"
+              onClick={() => setMenuOpen(false)}
+            >
+              {link.label}
+            </Link>
+          ))}
 
-        {user ? (
-          <button 
-            className="navbar__mobile-link" 
-            onClick={() => { setMenuOpen(false); logout(); navigate('/'); }}
-            style={{ background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', width: '100%', padding: 0 }}
-          >
-            Logout
-          </button>
-        ) : (
-          <Link to="/login" className="navbar__mobile-link" onClick={() => setMenuOpen(false)}>
-            Login
-          </Link>
-        )}
+          <div className="navbar__mobile-divider" />
 
-        <Link to="/destinations" className="navbar__mobile-cta" onClick={() => setMenuOpen(false)}>
-          Plan Your Trip
-        </Link>
+          {isAdmin ? (
+            <Link to="/admin" className="navbar__mobile-link" style={{ color: '#6BA4D4' }} onClick={() => setMenuOpen(false)}>
+              Admin Dashboard
+            </Link>
+          ) : user ? (
+            <Link to="/dashboard" className="navbar__mobile-link" style={{ color: '#6BA4D4' }} onClick={() => setMenuOpen(false)}>
+              My Dashboard
+            </Link>
+          ) : null}
+
+          {user ? (
+            <button
+              className="navbar__mobile-link"
+              onClick={() => { setMenuOpen(false); logout(); navigate('/'); }}
+            >
+              Logout
+            </button>
+          ) : (
+            <Link to="/login" className="navbar__mobile-link" onClick={() => setMenuOpen(false)}>
+              Login
+            </Link>
+          )}
+
+          <Link to="/destinations" className="navbar__mobile-cta" onClick={() => setMenuOpen(false)}>
+            Plan Your Trip ✈
+          </Link>
+        </div>
       </div>
     </header>
+
   );
 }
