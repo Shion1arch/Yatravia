@@ -148,9 +148,9 @@ const guides = [
     image: '/images/guide_rupam.jpg',
     experienceYears: 5,
     languages: ['English', 'Assamese', 'Hindi', 'Khasi'],
-    phone: '+91 98765 43210',
-    email: 'rupam@yatravia.in',
-    whatsapp: '+91 98765 43210',
+    phone: '+91 84148 06689',
+    email: 'dsouradeep79@gmail.com',
+    whatsapp: '+91 84148 06689',
     location: 'Shillong, Meghalaya',
   },
   {
@@ -160,10 +160,10 @@ const guides = [
     image: '/images/guide_raktim.jpg',
     experienceYears: 6,
     languages: ['English', 'Khasi', 'Bengali', 'Hindi'],
-    phone: '+91 87654 32109',
-    email: 'raktim@yatravia.in',
-    whatsapp: '+91 87654 32109',
-    location: 'Cherrapunji, Meghalaya',
+    phone: '+91 84148 06689',
+    email: 'dsouradeep79@gmail.com',
+    whatsapp: '+91 84148 06689',
+    location: 'Shillong, Meghalaya',
   }
 ];
 

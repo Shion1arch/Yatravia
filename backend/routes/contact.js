@@ -14,7 +14,7 @@ router.get('/my', protect, async (req, res) => {
 });
 
 // POST contact form submission
-router.post('/', async (req, res) => {
+router.post('/', protect, async (req, res) => {
   try {
     const { name, email, message, subject } = req.body;
     if (!name || !email || !message) {

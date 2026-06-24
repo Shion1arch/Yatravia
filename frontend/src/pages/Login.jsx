@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import './Login.css';
 
@@ -10,6 +10,7 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const { login, register } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleChange = e => {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -24,13 +25,15 @@ export default function Login() {
     try {
       if (mode === 'login') {
         const user = await login(form.email, form.password);
-        navigate(user.role === 'admin' ? '/admin' : '/dashboard');
+        const from = location.state?.from || (user.role === 'admin' ? '/admin' : '/dashboard');
+        navigate(from, { replace: true });
       } else {
         if (!form.name.trim()) { setError('Name is required.'); setLoading(false); return; }
         if (form.password.length < 6) { setError('Password must be at least 6 characters.'); setLoading(false); return; }
         if (form.password !== form.confirm) { setError('Passwords do not match.'); setLoading(false); return; }
         const user = await register(form.name, form.email, form.password);
-        navigate(user.role === 'admin' ? '/admin' : '/dashboard');
+        const from = location.state?.from || (user.role === 'admin' ? '/admin' : '/dashboard');
+        navigate(from, { replace: true });
       }
     } catch (err) {
       setError(err.response?.data?.message || 'Something went wrong. Please try again.');

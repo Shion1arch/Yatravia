@@ -1,11 +1,15 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useAuth } from '../context/AuthContext';
 import './Contact.css';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const [form, setForm] = useState({ name: user?.name || '', email: user?.email || '', subject: '', message: '' });
   const [status, setStatus] = useState(null); // null | 'loading' | 'success' | 'error'
   const [error, setError] = useState('');
 
@@ -97,109 +101,129 @@ export default function Contact() {
             {/* Form */}
             <div className="contact-page__form-wrap">
               <div className="contact-form-card">
-                <h3 className="contact-form-card__title">Send Us a Message</h3>
-                <p className="contact-form-card__sub">We'll get back to you within 24 hours</p>
-
-                {status === 'success' && (
-                  <div className="contact-form__success">
-                    <div className="contact-form__success-icon">✅</div>
-                    <div>
-                      <strong>Message sent successfully!</strong>
-                      <p>We'll get back to you within 24 hours.</p>
-                    </div>
-                  </div>
-                )}
-
-                {status === 'error' && (
-                  <div className="contact-form__error">
-                    <span>⚠️ {error}</span>
-                  </div>
-                )}
-
-                <form className="contact-form" onSubmit={handleSubmit} id="contact-form">
-                  <div className="contact-form__row">
-                    <div className="contact-form__group">
-                      <label htmlFor="contact-name" className="contact-form__label">Your Name *</label>
-                      <input
-                        type="text"
-                        id="contact-name"
-                        name="name"
-                        value={form.name}
-                        onChange={handleChange}
-                        placeholder="John Doe"
-                        className="contact-form__input"
-                        required
-                      />
-                    </div>
-                    <div className="contact-form__group">
-                      <label htmlFor="contact-email" className="contact-form__label">Email Address *</label>
-                      <input
-                        type="email"
-                        id="contact-email"
-                        name="email"
-                        value={form.email}
-                        onChange={handleChange}
-                        placeholder="john@example.com"
-                        className="contact-form__input"
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <div className="contact-form__group">
-                    <label htmlFor="contact-subject" className="contact-form__label">Subject</label>
-                    <select
-                      id="contact-subject"
-                      name="subject"
-                      value={form.subject}
-                      onChange={handleChange}
-                      className="contact-form__input"
+                {!user ? (
+                  <div className="contact-login-prompt" style={{ textAlign: 'center', padding: '40px 20px' }}>
+                    <div style={{ fontSize: '3.5rem', marginBottom: '20px' }}>🔒</div>
+                    <h3 className="contact-form-card__title" style={{ fontSize: '1.5rem', marginBottom: '12px' }}>Authentication Required</h3>
+                    <p className="contact-form-card__sub" style={{ marginBottom: '28px', fontSize: '0.95rem', lineHeight: '1.6' }}>
+                      You must be logged in to send a message. Guests can only browse the website.
+                    </p>
+                    <button
+                      type="button"
+                      className="contact-form__submit"
+                      onClick={() => navigate('/login', { state: { from: '/contact' } })}
+                      style={{ width: 'auto', display: 'inline-flex', margin: '0 auto', padding: '12px 30px' }}
                     >
-                      <option value="">Select a topic...</option>
-                      <option value="itinerary">Trip Itinerary Help</option>
-                      <option value="accommodation">Accommodation</option>
-                      <option value="transport">How to Reach</option>
-                      <option value="guide">Local Guide</option>
-                      <option value="other">Other</option>
-                    </select>
+                      Log In to Send Message
+                    </button>
                   </div>
+                ) : (
+                  <>
+                    <h3 className="contact-form-card__title">Send Us a Message</h3>
+                    <p className="contact-form-card__sub">We'll get back to you within 24 hours</p>
 
-                  <div className="contact-form__group">
-                    <label htmlFor="contact-message" className="contact-form__label">Your Message *</label>
-                    <textarea
-                      id="contact-message"
-                      name="message"
-                      value={form.message}
-                      onChange={handleChange}
-                      placeholder="Tell us about your travel plans or questions..."
-                      className="contact-form__input contact-form__textarea"
-                      required
-                      rows={5}
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="contact-form__submit"
-                    disabled={status === 'loading'}
-                    id="contact-submit"
-                  >
-                    {status === 'loading' ? (
-                      <>
-                        <div className="contact-form__submit-spinner" />
-                        Sending...
-                      </>
-                    ) : (
-                      <>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                          <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/>
-                          <path d="m21.854 2.147-10.94 10.939"/>
-                        </svg>
-                        Send Message
-                      </>
+                    {status === 'success' && (
+                      <div className="contact-form__success">
+                        <div className="contact-form__success-icon">✅</div>
+                        <div>
+                          <strong>Message sent successfully!</strong>
+                          <p>We'll get back to you within 24 hours.</p>
+                        </div>
+                      </div>
                     )}
-                  </button>
-                </form>
+
+                    {status === 'error' && (
+                      <div className="contact-form__error">
+                        <span>⚠️ {error}</span>
+                      </div>
+                    )}
+
+                    <form className="contact-form" onSubmit={handleSubmit} id="contact-form">
+                      <div className="contact-form__row">
+                        <div className="contact-form__group">
+                          <label htmlFor="contact-name" className="contact-form__label">Your Name *</label>
+                          <input
+                            type="text"
+                            id="contact-name"
+                            name="name"
+                            value={form.name}
+                            onChange={handleChange}
+                            placeholder="John Doe"
+                            className="contact-form__input"
+                            required
+                          />
+                        </div>
+                        <div className="contact-form__group">
+                          <label htmlFor="contact-email" className="contact-form__label">Email Address *</label>
+                          <input
+                            type="email"
+                            id="contact-email"
+                            name="email"
+                            value={form.email}
+                            onChange={handleChange}
+                            placeholder="john@example.com"
+                            className="contact-form__input"
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      <div className="contact-form__group">
+                        <label htmlFor="contact-subject" className="contact-form__label">Subject</label>
+                        <select
+                          id="contact-subject"
+                          name="subject"
+                          value={form.subject}
+                          onChange={handleChange}
+                          className="contact-form__input"
+                        >
+                          <option value="">Select a topic...</option>
+                          <option value="itinerary">Trip Itinerary Help</option>
+                          <option value="accommodation">Accommodation</option>
+                          <option value="transport">How to Reach</option>
+                          <option value="guide">Local Guide</option>
+                          <option value="other">Other</option>
+                        </select>
+                      </div>
+
+                      <div className="contact-form__group">
+                        <label htmlFor="contact-message" className="contact-form__label">Your Message *</label>
+                        <textarea
+                          id="contact-message"
+                          name="message"
+                          value={form.message}
+                          onChange={handleChange}
+                          placeholder="Tell us about your travel plans or questions..."
+                          className="contact-form__input contact-form__textarea"
+                          required
+                          rows={5}
+                        />
+                      </div>
+
+                      <button
+                        type="submit"
+                        className="contact-form__submit"
+                        disabled={status === 'loading'}
+                        id="contact-submit"
+                      >
+                        {status === 'loading' ? (
+                          <>
+                            <div className="contact-form__submit-spinner" />
+                            Sending...
+                          </>
+                        ) : (
+                          <>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                              <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/>
+                              <path d="m21.854 2.147-10.94 10.939"/>
+                            </svg>
+                            Send Message
+                          </>
+                        )}
+                      </button>
+                    </form>
+                  </>
+                )}
               </div>
             </div>
           </div>

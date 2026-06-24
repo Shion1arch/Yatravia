@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { useAuth } from '../context/AuthContext';
 import './PlanTripModal.css';
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -8,14 +9,15 @@ const API_URL = import.meta.env.VITE_API_URL;
 const GUIDE_PRICE_MAP = { 'Local Guide': 49, 'Expert Guide': 51, 'Audio Guide': 45, 'None': 21 };
 
 export default function PlanTripModal({ destination, onClose }) {
+  const { user } = useAuth();
   const [step, setStep] = useState(1);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
   const [booking, setBooking] = useState(null); // success state
 
   const [form, setForm] = useState({
-    name: '',
-    email: '',
+    name: user?.name || '',
+    email: user?.email || '',
     phone: '',
     travelDate: '',
     numberOfPeople: 1,

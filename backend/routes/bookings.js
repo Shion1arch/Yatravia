@@ -13,8 +13,8 @@ router.get('/my', protect, async (req, res) => {
   }
 });
 
-// POST /api/bookings — Create a new booking (public, no auth required)
-router.post('/', async (req, res) => {
+// POST /api/bookings — Create a new booking
+router.post('/', protect, async (req, res) => {
   try {
     const {
       destinationId,

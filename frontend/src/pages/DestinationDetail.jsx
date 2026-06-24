@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './DestinationDetail.css';
 import PlanTripModal from '../components/PlanTripModal';
+import { useAuth } from '../context/AuthContext';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -60,6 +61,8 @@ const staticDestinations = [
 
 export default function DestinationDetail() {
   const { id } = useParams();
+  const { user } = useAuth();
+  const navigate = useNavigate();
   const [dest, setDest] = useState(null);
   const [allDests, setAllDests] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -176,7 +179,13 @@ export default function DestinationDetail() {
                 <button
                   className="detail-plan-btn"
                   id="detail-plan-trip"
-                  onClick={() => setShowModal(true)}
+                  onClick={() => {
+                    if (!user) {
+                      navigate('/login', { state: { from: `/destinations/${id}` } });
+                    } else {
+                      setShowModal(true);
+                    }
+                  }}
                 >
                   Plan a Trip
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
