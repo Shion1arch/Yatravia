@@ -33,7 +33,7 @@ export default function Contact() {
 
   const infoCards = [
     { icon: '📍', title: 'Office', text: 'Tourism House\nNew Delhi – 110001, India' },
-    { icon: '📞', title: 'Phone', text: '+91 364 222 1234\nMon – Sat, 9am to 6pm' },
+    { icon: '📞', title: 'Phone', text: '+91 84148 06689\nMon – Sat, 9am to 6pm' },
     { icon: '✉️', title: 'Email', text: 'dsouradeep79@gmail.com' },
   ];
 
