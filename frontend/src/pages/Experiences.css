@@ -1,0 +1,320 @@
+/* ===========================
+   EXPERIENCES PAGE STYLES
+   =========================== */
+
+.experiences-page {
+  padding-top: 72px;
+}
+
+/* Hero */
+.experiences-page__hero {
+  position: relative;
+  height: 360px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.experiences-page__hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.experiences-page__hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.40) 100%);
+}
+
+.experiences-page__hero-content {
+  position: relative;
+  z-index: 2;
+  padding-top: 40px;
+  animation: fadeInUp 0.7s ease both;
+}
+
+.experiences-page__hero-title {
+  font-family: var(--font-montserrat);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 900;
+  color: white;
+  letter-spacing: -0.03em;
+  margin-top: 16px;
+}
+
+.experiences-page__hero-sub {
+  font-family: var(--font-raleway);
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.6);
+  margin-top: 8px;
+}
+
+/* Tab Explorer */
+.experiences-page__explorer {
+  background: white;
+  padding: 64px 0;
+  border-bottom: 1px solid var(--neutral-200);
+}
+
+/* Tabs */
+.experiences-page__tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.experiences-page__tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-montserrat);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--neutral-600);
+  background: var(--neutral-100);
+  border: 1.5px solid var(--neutral-200);
+  padding: 10px 20px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: var(--transition);
+  letter-spacing: 0.02em;
+}
+
+.experiences-page__tab:hover {
+  border-color: var(--orange-400);
+  color: var(--orange-600);
+  background: var(--orange-50);
+}
+
+.experiences-page__tab.active {
+  background: var(--orange-500);
+  color: white;
+  border-color: var(--orange-500);
+}
+
+.experiences-page__tab-icon {
+  font-size: 1rem;
+}
+
+/* Panel */
+.experiences-page__panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  animation: fadeInUp 0.5s ease both;
+}
+
+.experiences-page__panel-img-wrap {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  height: 380px;
+}
+
+.experiences-page__panel-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.19,1,0.22,1);
+}
+
+.experiences-page__panel-img-wrap:hover .experiences-page__panel-img {
+  transform: scale(1.05);
+}
+
+.experiences-page__panel-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.50) 0%, transparent 60%);
+}
+
+.experiences-page__panel-badge {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(10px);
+  color: var(--orange-300);
+  font-family: var(--font-montserrat);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(89,143,113,0.35);
+}
+
+.experiences-page__panel-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.experiences-page__panel-title {
+  font-family: var(--font-montserrat);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 900;
+  color: var(--neutral-800);
+  letter-spacing: -0.03em;
+}
+
+.experiences-page__panel-desc {
+  font-family: var(--font-raleway);
+  font-size: 1rem;
+  color: var(--neutral-600);
+  line-height: 1.75;
+}
+
+.experiences-page__panel-items-title {
+  font-family: var(--font-montserrat);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--neutral-400);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 14px;
+}
+
+.experiences-page__panel-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.experiences-page__panel-list-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-raleway);
+  font-size: 0.92rem;
+  color: var(--neutral-700);
+  font-weight: 500;
+}
+
+.experiences-page__panel-list-item svg {
+  color: var(--teal-600);
+  flex-shrink: 0;
+}
+
+/* All Experiences */
+.experiences-page__all {
+  background: var(--neutral-100);
+  padding: 80px 0;
+}
+
+.experiences-page__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+/* Experience Page Card */
+.exp-page-card {
+  background: white;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-slow);
+  animation: fadeInUp 0.6s ease both;
+  display: flex;
+  flex-direction: column;
+}
+
+.exp-page-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+.exp-page-card__image-wrap {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+
+.exp-page-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.19,1,0.22,1);
+}
+
+.exp-page-card:hover .exp-page-card__image {
+  transform: scale(1.07);
+}
+
+.exp-page-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, transparent 60%);
+}
+
+.exp-page-card__icon {
+  position: absolute;
+  bottom: 14px;
+  left: 16px;
+  font-size: 1.6rem;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
+}
+
+.exp-page-card__info {
+  padding: 22px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.exp-page-card__title {
+  font-family: var(--font-montserrat);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--neutral-800);
+}
+
+.exp-page-card__desc {
+  font-family: var(--font-raleway);
+  font-size: 0.88rem;
+  color: var(--neutral-600);
+  line-height: 1.6;
+  flex: 1;
+}
+
+.exp-page-card__btn {
+  font-family: var(--font-montserrat);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--orange-500);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+  margin-top: 8px;
+  transition: var(--transition);
+}
+
+.exp-page-card__btn:hover {
+  color: var(--orange-600);
+  padding-left: 4px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .experiences-page__panel {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .experiences-page__panel-img-wrap {
+    height: 280px;
+  }
+
+  .experiences-page__grid {
+    grid-template-columns: 1fr;
+  }
+}

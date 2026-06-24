@@ -1,0 +1,287 @@
+/* ===========================
+   YATRAVIA — GLOBAL STYLES
+   Warm Tropical Theme (matches logo)
+   =========================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Primary: Sage / Forest Green (Professional Nature) */
+  --orange-900: #1B2E24;
+  --orange-800: #294436;
+  --orange-700: #385B49;
+  --orange-600: #48755D;
+  --orange-500: #598F71;  /* Primary sage green */
+  --orange-400: #7DA68F;
+  --orange-300: #A2BEAE;
+  --orange-100: #E6EEE9;
+  --orange-50:  #F2F6F4;
+
+  /* Accent: Warm Stone / Sand */
+  --teal-900: #3D3831;
+  --teal-800: #5C544A;
+  --teal-700: #7A7062;
+  --teal-600: #998C7B;
+  --teal-500: #B8A894;  /* Primary stone */
+  --teal-400: #C6B9A9;
+  --teal-300: #D4CBBE;
+  --teal-100: #F1EFEA;
+  --teal-50:  #F8F7F4;
+
+  /* Dark: Deep Charcoal */
+  --brown-950: #0F1210;
+  --brown-900: #1C221F;
+  --brown-800: #29322E;
+  --brown-700: #3D4A44;
+  --brown-600: #52635B;
+
+  --neutral-900: #0A0A0A;
+  --neutral-800: #1A1A1A;
+  --neutral-700: #2E2E2E;
+  --neutral-600: #555555;
+  --neutral-500: #777777;
+  --neutral-400: #999999;
+  --neutral-200: #E0DDD8;
+  --neutral-100: #F5F2EE;  /* Warm off-white */
+  --neutral-50:  #FAF8F5;
+
+  --white: #FFFFFF;
+  --gold: #F5A623;
+
+  --font-montserrat: 'Montserrat', sans-serif;
+  --font-raleway: 'Raleway', sans-serif;
+  --font-playfair: 'Playfair Display', serif;
+
+  --shadow-sm: 0 2px 8px rgba(28,34,31,0.08);
+  --shadow-md: 0 8px 24px rgba(28,34,31,0.14);
+  --shadow-lg: 0 20px 60px rgba(28,34,31,0.22);
+  --shadow-orange: 0 8px 32px rgba(89,143,113,0.35);
+  --shadow-teal: 0 8px 32px rgba(26,173,163,0.30);
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --transition-slow: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-raleway);
+  background: var(--white);
+  color: var(--neutral-800);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-montserrat);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--font-raleway);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ===========================
+   SCROLLBAR
+   =========================== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--brown-800);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--orange-500);
+  border-radius: 3px;
+}
+
+/* ===========================
+   UTILITY CLASSES
+   =========================== */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-title {
+  font-family: var(--font-montserrat);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  color: var(--neutral-800);
+  letter-spacing: -0.02em;
+}
+
+.section-subtitle {
+  font-family: var(--font-raleway);
+  font-size: 1.1rem;
+  color: var(--neutral-600);
+  font-weight: 400;
+  margin-top: 0.5rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-montserrat);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--orange-600);
+  background: var(--orange-100);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--orange-500);
+  color: var(--white);
+  padding: 12px 28px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  border: none;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: var(--orange-600);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-orange);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--white);
+  padding: 11px 28px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  border: 2px solid rgba(255,255,255,0.7);
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  background: rgba(255,255,255,0.15);
+  border-color: var(--white);
+}
+
+/* ===========================
+   ANIMATIONS
+   =========================== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-orange {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(89,143,113,0.5); }
+  50% { box-shadow: 0 0 0 15px rgba(89,143,113,0); }
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(8px); opacity: 0.5; }
+}
+
+.animate-fade-up {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* ===========================
+   LOADING SPINNER
+   =========================== */
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--orange-100);
+  border-top-color: var(--orange-500);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ===========================
+   PAGE TRANSITIONS
+   =========================== */
+.page-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
